@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-
+from pydantic import BaseModel
+from ...source import *
 
 app = FastAPI()
 
@@ -39,4 +40,12 @@ def url(url : str):
         domain = parsed_url.netloc
         ipaddress = domain.split('.')[1]
         ip = ipaddress.
-    
+class Img(BaseModel):
+    imgurl : str
+
+@app.post('/predict')
+async def predict(request : Img):
+    prediction = classifier(request.imgurl)
+    if not prediction:
+        raise HTTPException(status_code=404,detail = '올바른 이미지를 입력하시오')
+    return prediction
