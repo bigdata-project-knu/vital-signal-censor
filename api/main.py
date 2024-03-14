@@ -29,3 +29,14 @@ def ask(text:str,image  ):
 #             rich_available = True
 #     except Exception:
 #         pass
+
+#api endpoint 구하기
+def url(url : str):
+    import socket
+    from ... import urlparse
+    try:
+        parsed_url = urlparse(url)
+        domain = parsed_url.netloc
+        ipaddress = domain.split('.')[1]
+        ip = ipaddress.
+    
