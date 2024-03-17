@@ -46,3 +46,13 @@ clf = IsolationForest()
 
 # 모델 학습
 clf.fit()
+
+# 테스트 데이터에 대해 이상 탐지 수행
+test_data = dataset(...)
+test_loader = DataLoader(test_data, batch_size=16, shuffle=False)
+
+test_embeddings = get_embeddings(test_loader, model)
+pred = clf.predict(test_embeddings)
+
+# Isolation Forest의 예측 결과(이상 = -1, 정상 = 1)를 이상 = 1, 정상 = 0으로 변환
+pred = np.where(pred == -1, 1, 0) # ? 연산자와 똑같음
