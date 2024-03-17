@@ -81,9 +81,39 @@ class Model(nn.Module):
 
 #train------------------------------------------------------------------
 model = Model().to(device)
+criterion = nn.BCEWithLogitsLoss() #정상, 비정상 이진분류
+optimizer = optim.AdamW(model.parameters(), lr=0.001)
+scheduler = CosineAnnealingLR(optimizer, T_max=100, eta_min=0.00001)
 
-
-
+def train(model, train_loader, criterion, optimizer, scheduler, num_epochs=10):
+    for epoch in range(num_epochs):
+        model.train()
+        running_loss = 0.0
+        running_corrects = 0
+        total = 0
+        
+        for images, labels in train_loader: #(배치사이즈, 채널, h,w)
+            images = images.to(device)
+            labels = labels.to(device)
+            
+            outputs = model(images)
+            loss = criterion(outputs, labels.view(-1, 1))
+            
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            
+            running_loss += loss.item()
+            predictions = (torch.sigmoid(outputs) > 0.5).float()
+            running_corrects += torch.sum(predictions == labels.view(-1, 1)).item()
+            total += labels.size(0)
+        
+        scheduler.step()
+        
+        epoch_loss = running_loss / len(train_loader)
+        epoch_acc = running_corrects / total
+        
+        print(f'Epoch {epoch+1}/{num_epochs}, Loss: {epoch_loss:.4f}, Accuracy: {epoch_acc:.4f}')
 #inference------------------------------------------------------------------
 
 
