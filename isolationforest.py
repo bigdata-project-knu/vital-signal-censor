@@ -6,7 +6,7 @@ from torch.optim.lr_scheduler import CosineAnnealingLR
 from torchvision import models, transforms
 import numpy as np
 from sklearn.ensemble import IsolationForest
-
+import pickle
 #--------------------------------------------------------------------------
 #isolationforest-----------------------------------------------------------
 
