@@ -1,8 +1,10 @@
 # %%writefile app.py
-from flask import Flask
+from flask import Flask, request, jsonify
 from PIL import Image
 from engine import vit, isolationforest
-from engine implementation import get_prediction
+from isolationforest implement import get_prediction
+import os
+from PIL import Image
 
 app = Flask(__name__)
 
