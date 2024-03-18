@@ -9,7 +9,7 @@ from PIL import Image
 app = Flask(__name__)
 
 
-allowed_data_extension  = {'png','jpeg','jpg'} #edf,rml 변환
+allowed_data_extension  = {'png','jpeg','jpg'} #파일 확장자를 옆의 3개로 변환
 def is_allowed_file(filename):
     return '.' in filename and filename.rsplit('.',1)[1].lower() in allowed_data_extension
 @app.route('/predict',methods =['POST','GET'])
