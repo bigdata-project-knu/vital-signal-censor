@@ -1,6 +1,6 @@
 
 # %%writefile engine.py
-
+#딥러닝
 import torch
 import torch.nn as nn
 from torch.nn import functional as F
