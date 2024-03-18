@@ -1,3 +1,4 @@
+#머신러닝
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -56,3 +57,5 @@ pred = clf.predict(test_embeddings)
 
 # Isolation Forest의 예측 결과(이상 = -1, 정상 = 1)를 이상 = 1, 정상 = 0으로 변환
 pred = np.where(pred == -1, 1, 0) # ? 연산자와 똑같음
+pickle.dump(model, open("isolation_forest.pkl", "wb"))
+#isolationforest 모델 파라미터 저장
