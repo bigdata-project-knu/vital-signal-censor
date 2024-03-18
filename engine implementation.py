@@ -56,10 +56,9 @@ model_path = 'model.pth'
 model.load_state_dict(torch.load(model_path))
 model.eval()
 
-def get_prediction(test_loader)
+def get_prediction(img)
   with torch.no_grad():
-      for x in tqdm(test_loader):
-          x = x.to('cuda')
-          out = model(x)
-          out = out.argmax(dim=2).cpu().numpy()
-          outs.append(out)
+      img = img.to('cuda')
+      out = model(img)
+      out = out.argmax(dim=2).cpu().numpy()
+      outs.append(out)
