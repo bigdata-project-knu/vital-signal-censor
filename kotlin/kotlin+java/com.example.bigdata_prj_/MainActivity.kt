@@ -2,8 +2,10 @@ package com.example.bigdata_prj
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -30,44 +32,68 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        val editText = findViewById<EditText>(R.id.editTextText)
+        val editText2 = findViewById<EditText>(R.id.editTextTextPassword)
+
         val button = findViewById<Button>(R.id.button)
         button.setOnClickListener {
-            val intent = Intent(this, AppMain::class.java)
-            startActivity(intent)
-            //startActivity(Intent(this, MainScreen::class.java))
-            val editText = findViewById<EditText>(R.id.editTextText)
-            val editText2 = findViewById<EditText>(R.id.editTextTextPassword)
+            var id = editText.text.toString()
+            var pw = editText2.text.toString()
 
-            var textId = editText.text.toString()
-            var textPw = editText2.text.toString()
-            val retrofitInstance =
-                RetrofitObject.getInstance().create(RetrofitService::class.java)
+            val retrofitservice = RetrofitService.create()
+            val data = UserModel(id, pw)
 
+            retrofitservice.requestLogin(data).enqueue(object : Callback<LoginDTO> {
+                override fun onResponse(
+                    call: Call<LoginDTO>,
+                    response: Response<LoginDTO>
+                ) {
+                    Log.d("로그인 통신 성공", response.toString())
+                    Log.d("로그인 통신 성공", response.body().toString())
 
-            CoroutineScope(Dispatchers.Main).launch {
-                try {
-                    val result = withContext(Dispatchers.IO) {
-                        retrofitInstance.getPost1()
+                    when (response.code()) {
+                        200 -> {
+                            var dialog = AlertDialog.Builder(this@MainActivity)
+                            dialog.setTitle("로그인 성공")
+                            dialog.setMessage("로그인에 성공하였습니다")
+                            dialog.show()
+                            val intent = Intent(this@MainActivity, AppMain::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+
+                        405 -> {
+                            Toast.makeText(
+                                this@MainActivity,
+                                "로그인 실패 : 아이디 혹은 비밀번호가 올바르지 않습니다",
+                                Toast.LENGTH_LONG
+                            ).show()
+                            var dialog = AlertDialog.Builder(this@MainActivity)
+                            dialog.setTitle("로그인 실패")
+                            dialog.setMessage("로그인에 실패하였습니다")
+                            dialog.show()
+                        }
+
+                        500 -> {
+                            Toast.makeText(this@MainActivity, "로그인 실패 : 서버 오류", Toast.LENGTH_LONG)
+                                .show()
+                            var dialog = AlertDialog.Builder(this@MainActivity)
+                            dialog.setTitle("로그인 실패")
+                            dialog.setMessage("로그인에 실패하였습니다")
+                            dialog.show()
+                        }
                     }
-                } catch (e: Exception) {
-                    onFailure(e)
                 }
-            }
+
+                override fun onFailure(call: Call<LoginDTO>, t: Throwable) {
+                    Log.d("로그인 통신 실패", t.message.toString())
+                    Log.d("로그인 통신 실패", "fail")
+                    var dialog = AlertDialog.Builder(this@MainActivity)
+                    dialog.setTitle("로그인 실패")
+                    dialog.setMessage("로그인에 실패하였습니다")
+                    dialog.show()
+                }
+            })
         }
-    }
-
-    private fun onFailure(t: Throwable) {
-        var dialog = AlertDialog.Builder(this@MainActivity)
-        dialog.setTitle("로그인 실패")
-        dialog.setMessage("로그인에 실패하였습니다")
-        dialog.show()
-    }
-
-    private fun onResponse(response: Post) {
-        var dialog = AlertDialog.Builder(this@MainActivity)
-        dialog.setTitle("로그인 성공")
-        dialog.setMessage("로그인에 성공하였습니다")
-        dialog.show()
-        startActivity(Intent(this, AppMain::class.java))
     }
 }
