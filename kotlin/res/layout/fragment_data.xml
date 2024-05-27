@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#1E3A00"
+    android:background="#88C34A"
     android:id="@+id/dataFragment"
     tools:context="com.example.bigdata_prj.fragments.DataFragment"
     >
@@ -13,8 +13,16 @@
         android:id="@+id/data_Fragment_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="데이터 프레그먼트"
-        android:textSize="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="550dp"
+        android:text="수면 데이터 분석"
+        android:textSize="30dp"
         android:layout_centerInParent="true"
         />
 
