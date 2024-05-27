@@ -1,3 +1,5 @@
+//retrofit 연결 전 확인용
+
 package com.example.bigdata_prj
 
 import android.content.Intent
@@ -40,60 +42,66 @@ class MainActivity : AppCompatActivity() {
             var id = editText.text.toString()
             var pw = editText2.text.toString()
 
-            val retrofitservice = RetrofitService.create()
+            //val retrofitservice = RetrofitService.create() 미리보기용
             val data = UserModel(id, pw)
 
-            retrofitservice.requestLogin(data).enqueue(object : Callback<LoginDTO> {
-                override fun onResponse(
-                    call: Call<LoginDTO>,
-                    response: Response<LoginDTO>
-                ) {
-                    Log.d("로그인 통신 성공", response.toString())
-                    Log.d("로그인 통신 성공", response.body().toString())
+            //미리보기용
+            val intent = Intent(this@MainActivity, AppMain::class.java)
+            startActivity(intent)
+            finish()
+            //미리보기용
 
-                    when (response.code()) {
-                        200 -> {
-                            var dialog = AlertDialog.Builder(this@MainActivity)
-                            dialog.setTitle("로그인 성공")
-                            dialog.setMessage("로그인에 성공하였습니다")
-                            dialog.show()
-                            val intent = Intent(this@MainActivity, AppMain::class.java)
-                            startActivity(intent)
-                            finish()
-                        }
-
-                        405 -> {
-                            Toast.makeText(
-                                this@MainActivity,
-                                "로그인 실패 : 아이디 혹은 비밀번호가 올바르지 않습니다",
-                                Toast.LENGTH_LONG
-                            ).show()
-                            var dialog = AlertDialog.Builder(this@MainActivity)
-                            dialog.setTitle("로그인 실패")
-                            dialog.setMessage("로그인에 실패하였습니다")
-                            dialog.show()
-                        }
-
-                        500 -> {
-                            Toast.makeText(this@MainActivity, "로그인 실패 : 서버 오류", Toast.LENGTH_LONG)
-                                .show()
-                            var dialog = AlertDialog.Builder(this@MainActivity)
-                            dialog.setTitle("로그인 실패")
-                            dialog.setMessage("로그인에 실패하였습니다")
-                            dialog.show()
-                        }
-                    }
-                }
-
-                override fun onFailure(call: Call<LoginDTO>, t: Throwable) {
-                    Log.d("로그인 통신 실패", t.message.toString())
-                    Log.d("로그인 통신 실패", "fail")
-                    var dialog = AlertDialog.Builder(this@MainActivity)
-                    dialog.setTitle("로그인 실패")
-                    dialog.setMessage("로그인에 실패하였습니다")
-                    dialog.show()
-                }
-            })
+//            retrofitservice.requestLogin(data).enqueue(object : Callback<LoginDTO> {
+//                override fun onResponse(
+//                    call: Call<LoginDTO>,
+//                    response: Response<LoginDTO>
+//                ) {
+//                    Log.d("로그인 통신 성공", response.toString())
+//                    Log.d("로그인 통신 성공", response.body().toString())
+//
+//                    when (response.code()) {
+//                        200 -> {
+//                            var dialog = AlertDialog.Builder(this@MainActivity)
+//                            dialog.setTitle("로그인 성공")
+//                            dialog.setMessage("로그인에 성공하였습니다")
+//                            dialog.show()
+//                            val intent = Intent(this@MainActivity, AppMain::class.java)
+//                            startActivity(intent)
+//                            finish()
+//                        }
+//
+//                        405 -> {
+//                            Toast.makeText(
+//                                this@MainActivity,
+//                                "로그인 실패 : 아이디 혹은 비밀번호가 올바르지 않습니다",
+//                                Toast.LENGTH_LONG
+//                            ).show()
+//                            var dialog = AlertDialog.Builder(this@MainActivity)
+//                            dialog.setTitle("로그인 실패")
+//                            dialog.setMessage("로그인에 실패하였습니다")
+//                            dialog.show()
+//                        }
+//
+//                        500 -> {
+//                            Toast.makeText(this@MainActivity, "로그인 실패 : 서버 오류", Toast.LENGTH_LONG)
+//                                .show()
+//                            var dialog = AlertDialog.Builder(this@MainActivity)
+//                            dialog.setTitle("로그인 실패")
+//                            dialog.setMessage("로그인에 실패하였습니다")
+//                            dialog.show()
+//                        }
+//                    }
+//                }
+//
+//                override fun onFailure(call: Call<LoginDTO>, t: Throwable) {
+//                    Log.d("로그인 통신 실패", t.message.toString())
+//                    Log.d("로그인 통신 실패", "fail")
+//                    var dialog = AlertDialog.Builder(this@MainActivity)
+//                    dialog.setTitle("로그인 실패")
+//                    dialog.setMessage("로그인에 실패하였습니다")
+//                    dialog.show()
+//                }
+//            })
         }
     }
 }
