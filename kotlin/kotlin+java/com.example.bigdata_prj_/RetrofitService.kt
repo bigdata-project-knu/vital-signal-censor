@@ -20,6 +20,14 @@ interface RetrofitService {
         @Body jsonParams : UserModel,
     ) : Call<LoginDTO>
 
+//    fun userInfo(
+//        @Body jsonParams : UserModel,
+//    ) : Call<회원정보 data class>
+//
+//    fun requestData(
+//        @Body jsonParams : UserModel,
+//    ) : Call<수면정보 data class>
+
     companion object{
         private const val BASE_URL = "" //백엔드 서버
         val gson : Gson = GsonBuilder().setLenient().create()
