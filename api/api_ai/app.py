@@ -18,13 +18,18 @@ from fastapi import FastAPI, Response, status, HTTPException, Depends, APIRouter
 # )
 
 
-class ECGdata(BaseModel):
+class ECGdata(BaseModel): #297500,1
     input: List[float]
 
 def load_model(model_dir):
     model = torch.jit.load(os.path.join(model_dir, 'model.pt'))
     model.to("cuda") if torch.cuda.is_available() else model.to("cpu")
     return model
+    
+def preprocess(ECGdata):
+    data = np.array(a01)
+    data = np.reshape(data,(-1,1,1))
+    data = data[:,:,0]
 
 @router.post("/", status_code=status.HTTP_201_CREATED, response_model=ECGData)
 def process(input : schemas.ECGData, model):
