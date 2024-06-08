@@ -1,6 +1,6 @@
 //retrofit 연결 전 확인용
 
-package com.example.bigdata_prj
+package com.example.bigdata_project
 
 import android.content.Intent
 import android.os.Bundle
@@ -13,6 +13,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.bigdata_project.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             var pw = editText2.text.toString()
 
             //val retrofitservice = RetrofitService.create() 미리보기용
-            val data = UserModel(id, pw)
+            //val data = UserModel(id, pw)
 
             //미리보기용
             val intent = Intent(this@MainActivity, AppMain::class.java)
