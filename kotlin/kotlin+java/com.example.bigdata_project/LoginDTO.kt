@@ -1,4 +1,4 @@
-package com.example.bigdata_prj
+package com.example.bigdata_project
 
 data class LoginDTO(
     val code: String, //성공or실패
