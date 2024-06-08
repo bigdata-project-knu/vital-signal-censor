@@ -1,14 +1,14 @@
-package com.example.bigdata_prj.fragments
+package com.example.bigdata_project.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.bigdata_prj.databinding.FragmentDataBinding
-import com.example.bigdata_prj.databinding.FragmentHomeBinding
+import com.example.bigdata_project.databinding.FragmentDataBinding
+import com.example.bigdata_project.databinding.FragmentHomeBinding
 
-class DataFragment : Fragment() {
+class InfoFragment : Fragment() {
 
     private var mBinding : FragmentDataBinding? = null
 
