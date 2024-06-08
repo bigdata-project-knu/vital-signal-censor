@@ -1,4 +1,4 @@
-package com.example.bigdata_prj
+package com.example.bigdata_project
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -7,7 +7,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
-import com.example.bigdata_prj.databinding.ActivityAppMainBinding
+import com.example.bigdata_project.databinding.ActivityAppMainBinding
+import com.example.bigdata_project.R
 
 class AppMain : AppCompatActivity() {
     private lateinit var mBinding : ActivityAppMainBinding
