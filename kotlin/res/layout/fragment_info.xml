@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="#D0D6C9"
     android:id="@+id/infoFragment"
-    tools:context="com.example.bigdata_prj.fragments.InfoFragment"
+    tools:context="com.example.bigdata_project.fragments.InfoFragment"
     >
 
     <TextView
