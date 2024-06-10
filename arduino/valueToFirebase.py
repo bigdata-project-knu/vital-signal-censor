@@ -49,5 +49,5 @@ data = ecg_data[:500]
 print(data)
 
 # Firebase에 데이터 전송
-ref = db.reference('ecgData')
+ref = db.reference('ecgData') # DB에 저장될 이름 결정
 ref.set(data)
