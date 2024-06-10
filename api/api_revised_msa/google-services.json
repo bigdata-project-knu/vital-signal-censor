@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "941985279122",
+    "firebase_url": "https://project-d3dfd-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "project-d3dfd",
+    "storage_bucket": "project-d3dfd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:941985279122:android:fb20c0ef2ca7911006ca4b",
+        "android_client_info": {
+          "package_name": "com.example.bigdata_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAsBzpU1zgmBKwJzqchx-p6qkfzC7jVfDk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
