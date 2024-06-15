@@ -5,6 +5,7 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/homeFragment">
 
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.bigdata_prj.fragments.HomeFragment"
@@ -14,7 +15,9 @@
         android:id="@+id/dataFragment"
         android:name="com.example.bigdata_prj.fragments.DataFragment"
         android:label="fragment_data"
-        tools:layout="@layout/fragment_data" />
+        tools:layout="@layout/fragment_data">
+    </fragment>
+
     <fragment
         android:id="@+id/musicFragment"
         android:name="com.example.bigdata_prj.fragments.MusicFragment"
