@@ -18,12 +18,12 @@ interface RetrofitService {
     @GET("/censor/user1")
     fun censor(
         @Query("query") jsonParams : String
-    ) : Call<List<Double>>
+    ) : Call<Array<Double>>
 
     @GET("/censor/user1")
     fun predict(
         @Query("query") jsonParams : String
-    ) : Call<List<Double>>
+    ) : Call<Array<Double>>
 
     companion object{
         private const val BASE_URL = "http://10.0.2.2:8000" //백엔드 서버
@@ -36,8 +36,5 @@ interface RetrofitService {
                 .build()
                 .create(RetrofitService::class.java)
         }
-
-
-
     }
 }
